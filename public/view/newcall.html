@@ -103,7 +103,7 @@
     .btn-accessibility {
         position: relative;
         /* bottom: 60; */
-        width: 250px;
+        width: 350px;
         font-size: 1.4rem;
         padding: 20px 15px;
         /* margin-top:35%; */
@@ -154,6 +154,12 @@
     #btns-port-libra{
         transition: margin-top .5s ease;
     }
+
+    .class-accessibility{
+        bottom: 7vh;
+        width: 500px;
+        position : absolute
+    }
 </style>
 
 <body>
@@ -194,19 +200,27 @@
     </div>
 </body>
 
+
 <script>
-    $(document).ready(function () {
-        $('#accessibility').click(() => {
+    $(document).ready(function() {
+      document.addEventListener('contextmenu', event => event.preventDefault());
+    })
+    </script>
 
-            $('#btns-port-libra').css({
-                'bottom': '20vh',
-                'width': '500px',
-                'position': 'absolute',
-            });
+<script>
 
-        });
-    });
+    function accessibility(){
+        $('#btns-port-libra').addClass('class-accessibility')
 
+        $('#accessibility').hide()
+
+        setTimeout(() => {
+            $('#btns-port-libra').removeClass("class-accessibility");
+            $('#accessibility').show()
+        }, 3500);
+
+    }
+    $('#accessibility').click(() => accessibility());
     function created_call() {
 
 

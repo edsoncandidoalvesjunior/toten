@@ -1023,7 +1023,6 @@ function handleDisconnect() {
  * @param {*} config
  */
 function handleRemovePeer(config) {
-
     let peer_id = config.peer_id;
 
     if (peer_id in peerMediaElements) {
@@ -1347,8 +1346,8 @@ function loadLocalMedia(stream) {
     border-radius: 10px;
     position: absolute;
     z-index: 10; 
-    bottom: 0;
-    right: 0;
+    top: 0;
+    left: 0;
     width: 15vh;
     height: 15vh;
     `;
@@ -1486,7 +1485,7 @@ function loadRemoteMediaStream(stream, peers, peer_id) {
 
     remoteVideoWrap.className = 'video';
 
-    remoteVideoWrap.style
+    remoteVideoWrap.style;
 
     // add elements to videoWrap div
     remoteVideoWrap.appendChild(remoteStatusMenu);
@@ -1547,46 +1546,64 @@ function logStreamSettingsInfo(name, stream) {
  * Resize video elements
  */
 function resizeVideos() {
+    let toten = localStorage.getItem('@FLY:totem_id');
+
     const numToString = ['', 'one', 'two', 'three', 'four', 'five', 'six'];
     const videos = document.querySelectorAll('.video');
+
+    let it = new URLSearchParams(location.search).get('it');
+    let at = new URLSearchParams(location.search).get('at');
+    let room = new URLSearchParams(location.search).get('id');
+    let reload = new URLSearchParams(location.search).get('reload');
+
     let a = 0;
     document.querySelectorAll('.video').forEach((v) => {
         v.className = 'video ' + numToString[videos.length];
         a = a + 1;
 
-        if(document.querySelectorAll('.video').length == 2){
-            if(a == 2  ){
+        if (document.querySelectorAll('.video').length == 2) {
+            if (a == 2) {
                 v.style = `
-                width: 100% !important;
-                height: 100% !important;
-                right: 0;
-                position: absolute
-                z-index: 3;
-                `;
+                    width: 100% !important;
+                    height: 100% !important;
+                    right: 0;
+                    position: absolute
+                    z-index: 3;
+                    `;
             }
-        }else if(document.querySelectorAll('.video').length == 3){
-
-            if(a == 2 ){
+        } else if (document.querySelectorAll('.video').length == 3) {
+            if (at == null && it == null && (a == 2 || a == 3)) {
                 v.style = `
                 width: 100vw !important;
-                height: 100vh !important;
-                bottom: 0;
-                position: absolute;
+                height: 50vh !important;
                 `;
             }
-            if(a == 3){
-                v.style = `
-                width: 15vh !important;
-                height: 15vh !important;
-                bottom: 0;
-                left: 1%;
-                position: absolute;
-                z-index: 3;
-                `;
+            if (at != null || it != null) {
+                if (a == 3) {
+                    v.style = `
+                    left: 0;
+                    position: absolute;
+                    width: 50vw !important;
+                    height: 100vh !important;
+                    `;
+                }
+                if (a == 2) {
+                    v.style = `
+                    right: 0;
+                    position: absolute;
+                    width: 50vw !important;
+                    height: 100vh !important;
+                    `;
+                }
             }
 
+            if (reload == '1') {
+                setTimeout(function () {
+                    let url = window.location.href.split('&')[0];
+                    window.location.href = url;
+                }, 2000);
+            }
         }
-        
     });
 }
 
@@ -4996,23 +5013,22 @@ function showAbout() {
  * Leave the Room and create a new one
  */
 
- signalingSocket.on("finalizando", (room) => {
+signalingSocket.on('finalizando', (room) => {
     let totem = localStorage.getItem('@FLY:totem_id');
-    let url_string = window.location.href.split("/join/")[1];
-     if(room == url_string && totem !=""){
+    let url_string = window.location.href.split('/join/')[1];
+    if (room == url_string && totem != '') {
         window.location.href = '/newcall';
-     }
- });
+    }
+});
 function leaveRoom() {
-
     playSound('newMessage');
 
     console.log('Finalizando a chamada!');
     let totem = localStorage.getItem('@FLY:totem_id');
     let clerck = localStorage.getItem('@FLY:clerck_id');
 
-    let arr = "Chamada Finalizada";
-    if (totem != null ) {
+    let arr = 'Chamada Finalizada';
+    if (totem != null) {
         Swal.fire({
             background: swalBackground,
             position: 'center',
@@ -5034,17 +5050,15 @@ function leaveRoom() {
                 let id_sala = url.pathname.split('/')[2];
 
                 $.ajax({
-                    url: `https://flytoten.flystart.com.br/toten/finalizadat?sala`+ id_sala,
+                    url: `https://flytoten.flystart.com.br/toten/finalizadat?sala` + id_sala,
                     method: 'GET',
-                    complete: function(){
-                        window.location.href = '/newcall?id='+totem;
-                    }
+                    complete: function () {
+                        window.location.href = '/newcall?id=' + totem;
+                    },
                 });
-
             }
         });
-   
-    }else{
+    } else {
         Swal.fire({
             background: swalBackground,
             position: 'center',
@@ -5061,7 +5075,7 @@ function leaveRoom() {
             },
         }).then(async (result) => {
             if (result.isConfirmed) {
-               window.close()
+                window.close();
             }
         });
     }
