@@ -1,0 +1,280 @@
+<html lang="en" class="no-js">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- StyleSheet -->
+
+    <!-- <link rel="stylesheet" href="../css/landing.css" /> -->
+    <!-- <link rel="stylesheet" href="../css/newcall.css" /> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"
+        integrity="sha512-yFjZbTYRCJodnuyGlsKamNE/LlEaEAxSUDe5+u61mV8zzqJVFOH7TnULE2/PP/l5vKWpUNnF4VGVkXh3MjgLsg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        color: #FFF;
+        font-family: sans-serif;
+    }
+
+    .content-nts {
+        display: flex;
+        flex-direction: column;
+        /* justify-content:flex-start; */
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        padding-top: 200px;
+        background-color: #033a4d;
+    }
+
+    .orange-set {
+        background-color: #e39800;
+        transition: .4s ease;
+    }
+
+    .orange-set:hover {
+        background-color: #9d6a02;
+    }
+
+    .bluelight-set {
+        background-color: #015875;
+    }
+
+    .content-central {
+        width: 500px;
+        z-index: 5;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+    }
+
+    .content-logo {
+        margin-bottom: 65px;
+    }
+
+    .content-logo h1 {
+        /* width: 455px; */
+        text-align: center;
+        font-size: 5rem;
+        line-height: 73px;
+    }
+
+    .content-btns {
+        width: 100%;
+        text-align: center;
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+    }
+
+    .content-btns h4 {
+        font-weight: normal;
+    }
+
+    .content-btns .btns {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .content-btns .btns button {
+        width: 48%;
+        font-size: 1.4rem;
+        padding: 20px 15px;
+        margin-top: 15px;
+        border: 0;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+
+    .btn-accessibility {
+        position: relative;
+        /* bottom: 60; */
+        width: 250px;
+        font-size: 1.4rem;
+        padding: 20px 15px;
+        /* margin-top:35%; */
+        border: 0;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: .4s ease;
+    }
+
+    .btn-accessibility:hover {
+        background-color: #024c64;
+    }
+
+    .svg1 {
+        position: absolute;
+        top: 10;
+        width: 100%;
+        z-index: 1;
+        opacity: 0.3;
+    }
+
+    .svg2 {
+        position: absolute;
+        bottom: 20%;
+        width: 100%;
+        z-index: 1;
+        opacity: 0.3;
+    }
+
+    .img {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .img img {
+        width: 120px;
+        height: 32px;
+    }
+
+    .container-btn{
+        display: flex;
+        position: relative;
+        bottom: 60;
+        z-index: 5;
+    }
+
+    #btns-port-libra{
+        transition: margin-top .5s ease;
+    }
+</style>
+
+<body>
+    <div class="content-nts">
+        <svg class="svg1" width="1926" height="155" viewBox="0 0 1926 155" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 10.6592C904.889 -14.5786 1046.01 99 1925 99" stroke="white" />
+            <path d="M5 150.012C1210.58 184.554 1477.99 -17.1892 1925 2.33425" stroke="#E1C012" />
+        </svg>
+
+
+        <div class="content-central">
+            <div class="content-logo">
+                <div class="img">
+                    <img src="images/nts.png" alt="Natal Shopping">
+                </div>
+                <h1>PRECISA<br> DE AJUDA?</h1>
+            </div>
+            <div class="content-btns">
+                <h4>SELECIONE SUA OPÇÃO DE ATENDIMENTO</h4>
+                <div class="btns " id="btns-port-libra">
+                    <button onclick="created_call()" class="btn-portuguese orange-set"><i class="fa-regular fa-message fa-lg"></i> PORTUGUÊS</button>
+                    <button onclick="created_call_li()" class="btn-libra orange-set"> <i class="fa-solid fa-hands fa-lg" style="margin-right: 15px;"></i> LIBRAS</button>
+                </div>
+            </div>
+           
+        </div>
+
+        <div class="container-btn">
+            <button class="btn-accessibility bluelight-set" id="accessibility"> <i
+                    class="fa-brands fa-accessible-icon fa-lg"> </i> ACESSIBILIDADE</button>
+        </div>
+        <svg class="svg2" width="1926" height="155" viewBox="0 0 1926 155" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 10.6592C904.889 -14.5786 1046.01 99 1925 99" stroke="white" />
+            <path d="M5 150.012C1210.58 184.554 1477.99 -17.1892 1925 2.33425" stroke="#E1C012" />
+        </svg>
+    </div>
+</body>
+
+<script>
+    $(document).ready(function () {
+        $('#accessibility').click(() => {
+
+            $('#btns-port-libra').css({
+                'bottom': '20vh',
+                'width': '500px',
+                'position': 'absolute',
+            });
+
+        });
+    });
+
+    function created_call() {
+
+
+        let url_string = window.location.href;
+        let url = new URL(url_string);
+        let data = url.searchParams.get("id"); //pega o value
+        if (data) {
+            localStorage.setItem("@FLY:totem_id", data)
+        }
+        setInterval(() => {
+            $.ajax({
+                // url: "https://apiflytoten.corpstek.com.br/rooms/created",
+                url: "https://flytoten.flystart.com.br/toten/portugues",
+                method: "POST",
+                data: {
+                    _id_totem: localStorage.getItem("@FLY:totem_id")
+                },
+                success: (resp) => {
+                    resp = JSON.parse(resp);
+                    if (Number(resp) != null) {
+                        window.location.href = '/join/' + resp;
+                    } else {
+                        Swal.fire({
+                            title: 'Aguardando Atendente...',
+                            timer: 2000,
+                            timerProgressBar: true,
+                        })
+                    }
+                },
+                error: (err) => {}
+            })
+        }, 2600);
+    }
+
+    function created_call_li() {
+
+        let url_string = window.location.href;
+        let url = new URL(url_string);
+        let data = url.searchParams.get("id"); //pega o value
+        if (data) {
+            localStorage.setItem("@FLY:totem_id", data)
+        }
+        setInterval(() => {
+            $.ajax({
+                // url: "https://apiflytoten.corpstek.com.br/rooms/createdl",
+                url: "https://flytoten.flystart.com.br/toten/libras",
+                method: "POST",
+                data: {
+                    _id_totem: localStorage.getItem("@FLY:totem_id")
+                },
+                success: (resp) => {
+                    resp = JSON.parse(resp);
+
+                    if (Number(resp) != null) {
+                        window.location.href = '/join/' + resp;
+                    } else {
+                        Swal.fire({
+                            title: 'Aguardando Atendente...',
+                            timer: 2000,
+                            timerProgressBar: true,
+                        })
+                    }
+                },
+                error: (err) => {}
+            })
+        }, 2600);
+
+    }
+</script>
+
+</html>
