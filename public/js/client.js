@@ -1601,7 +1601,7 @@ function resizeVideos() {
                 setTimeout(function () {
                     let url = window.location.href.split('&')[0];
                     window.location.href = url;
-                }, 2000);
+                }, 5000);
             }
         }
     });
