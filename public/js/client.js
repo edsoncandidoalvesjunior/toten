@@ -1597,10 +1597,31 @@ function resizeVideos() {
                 }
             }
 
-            if (reload == '1') {
+            if (a == 3) {
+                console.log('Reload');
                 setTimeout(function () {
-                    let url = window.location.href.split('&')[0];
-                    window.location.href = url;
+                    let url_string = new URL(window.location.href);
+                    let id_sala = url_string.pathname.split('/')[2];
+                    $.ajax({
+                        url: `https://flytoten.flystart.com.br/toten/re?sala=` + id_sala,
+                        method: 'POST',
+                        data: {
+                            sala: id_sala,
+                        },
+                        success: function (resp) {
+                            resp = JSON.parse(resp);
+                            if (resp.result) {
+                                $.ajax({
+                                    url: `https://flytoten.flystart.com.br/toten/re2?sala=` + id_sala,
+                                    method: 'POST',
+                                    data: {
+                                        sala: id_sala,
+                                    },
+                                });
+                                window.location.reload();
+                            }
+                        },
+                    });
                 }, 5000);
             }
         }
