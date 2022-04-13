@@ -144,21 +144,21 @@
         height: 32px;
     }
 
-    .container-btn{
+    .container-btn {
         display: flex;
         position: relative;
         bottom: 60;
         z-index: 5;
     }
 
-    #btns-port-libra{
+    #btns-port-libra {
         transition: margin-top .5s ease;
     }
 
-    .class-accessibility{
+    .class-accessibility {
         bottom: 7vh;
         width: 500px;
-        position : absolute
+        position: absolute
     }
 </style>
 
@@ -181,11 +181,13 @@
             <div class="content-btns">
                 <h4>SELECIONE SUA OPÇÃO DE ATENDIMENTO</h4>
                 <div class="btns " id="btns-port-libra">
-                    <button onclick="created_call()" class="btn-portuguese orange-set"><i class="fa-regular fa-message fa-lg"></i> PORTUGUÊS</button>
-                    <button onclick="created_call_li()" class="btn-libra orange-set"> <i class="fa-solid fa-hands fa-lg" style="margin-right: 15px;"></i> LIBRAS</button>
+                    <button onclick="created_call(this)" class="btn-portuguese orange-set"><i
+                            class="fa-regular fa-message fa-lg"></i> PORTUGUÊS</button>
+                    <button onclick="created_call_li(this)" class="btn-libra orange-set"> <i
+                            class="fa-solid fa-hands fa-lg" style="margin-right: 15px;"></i> LIBRAS</button>
                 </div>
             </div>
-           
+
         </div>
 
         <div class="container-btn">
@@ -202,14 +204,13 @@
 
 
 <script>
-    $(document).ready(function() {
-      document.addEventListener('contextmenu', event => event.preventDefault());
+    $(document).ready(function () {
+        document.addEventListener('contextmenu', event => event.preventDefault());
     })
-    </script>
+</script>
 
 <script>
-
-    function accessibility(){
+    function accessibility() {
         $('#btns-port-libra').addClass('class-accessibility')
 
         $('#accessibility').hide()
@@ -221,15 +222,29 @@
 
     }
     $('#accessibility').click(() => accessibility());
-    function created_call() {
 
+    function created_call(element) {
 
+        $(element).attr("disabled", true);
         let url_string = window.location.href;
         let url = new URL(url_string);
         let data = url.searchParams.get("id"); //pega o value
         if (data) {
             localStorage.setItem("@FLY:totem_id", data)
         }
+        $(element).attr("disabled", true);
+
+        Swal.fire({
+            title: 'Iniciando Atendimento',
+            text: 'Você será atendido em instantes.',
+            timerProgressBar: true,
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            didOpen: () => {
+                Swal.showLoading()
+
+            },
+        })
         setInterval(() => {
             $.ajax({
                 // url: "https://apiflytoten.corpstek.com.br/rooms/created",
@@ -255,7 +270,7 @@
         }, 2600);
     }
 
-    function created_call_li() {
+    function created_call_li(element) {
 
         let url_string = window.location.href;
         let url = new URL(url_string);
@@ -263,6 +278,20 @@
         if (data) {
             localStorage.setItem("@FLY:totem_id", data)
         }
+
+        $(element).attr("disabled", true);
+
+        Swal.fire({
+            title: 'Iniciando Atendimento',
+            text: 'Você será atendido em instantes.',
+            timerProgressBar: true,
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            didOpen: () => {
+                Swal.showLoading()
+
+            },
+        })
         setInterval(() => {
             $.ajax({
                 // url: "https://apiflytoten.corpstek.com.br/rooms/createdl",
