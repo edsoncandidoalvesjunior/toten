@@ -177,8 +177,6 @@
                     <img src="images/nts.png" alt="Natal Shopping">
                 </div>
                 <h1>PRECISA<br> DE AJUDA?</h1>    
-                <br>
-                <h4 style="text-transform: uppercase; text-align: center;   font-weight: normal" >Para atendimento presencial, favor dirigir-se ao SAC seguindo pelo corredor ao lado da Claro</h4>            
             </div>
             <div class="content-btns">
                 <h4>SELECIONE A OPÇÃO E VOCÊ SERÁ DIRECIONADO PARA NOSSA EQUIPE DE ATENDIMENTO</h4>
@@ -188,10 +186,11 @@
                     <button onclick="created_call_li(this)" class="btn-libra orange-set"> <i
                             class="fa-solid fa-hands fa-lg" style="margin-right: 15px;"></i> LIBRAS</button>
                 </div>
+                <div style="margin-top: 40vh;" id="ajuda2">
+                    <h4 style="text-transform: uppercase; text-align: center; font-weight: normal" >Para atendimento presencial, favor dirigir-se ao SAC seguindo pelo corredor ao lado da Claro</h4>            
+                </div>
             </div>
-
         </div>
-
         <div class="container-btn">
             <button class="btn-accessibility bluelight-set" id="accessibility"> <i
                     class="fa-brands fa-accessible-icon fa-lg"> </i> ACESSIBILIDADE</button>
@@ -216,10 +215,12 @@
         $('#btns-port-libra').addClass('class-accessibility')
 
         $('#accessibility').hide()
+        $('#ajuda2').hide()
 
         setTimeout(() => {
             $('#btns-port-libra').removeClass("class-accessibility");
             $('#accessibility').show()
+            $('#ajuda2').show()
         }, 3500);
 
     }
