@@ -31,33 +31,37 @@
     </div>
 
     <script>
-        
-       setInterval(()=>{
-            let url_string = window.location.href;
-           let url = new URL(url_string);
-           let data = url.pathname.split('/')[2];
 
-           $.ajax({
-               url: "https://flytoten.flystart.com.br/toten/finalizar?sala="+data,
-            //    url: "http://localhost/flytoten/toten/finalizar?sala="+data,
-               method: 'POST',
-               data: {
-                   sala: data
-               },
-               success: function (resp) {
-                   resp = JSON.parse(resp)
-                   if (resp.result) {
-                       let id_totem = localStorage.getItem("@FLY:totem_id");
-                       if (id_totem == undefined || id_totem == null) {
-                           window.location.href = 'https://flytoten.flystart.com.br'
-                       } else {
-                           window.location.href = '/newcall?id=' + localStorage.getItem('@FLY:totem_id')+'&reload=1';
-                       }
-                   }
-               },
-           });
-       }, 1500)
-    
+        setInterval(() => {
+            let url_string = window.location.href;
+            let url = new URL(url_string);
+            let data = url.pathname.split('/')[2];
+
+
+            let logo_empresa = localStorage.getItem('@FLY:logo_empresa');
+            let libras = localStorage.getItem('@FLY:libras');
+
+            $.ajax({
+                url: "https://flytoten.flystart.com.br/toten/finalizar?sala=" + data,
+                //    url: "http://localhost/flytoten/toten/finalizar?sala="+data,
+                method: 'POST',
+                data: {
+                    sala: data
+                },
+                success: function (resp) {
+                    resp = JSON.parse(resp)
+                    if (resp.result) {
+                        let id_totem = localStorage.getItem("@FLY:totem_id");
+                        if (id_totem == undefined || id_totem == null) {
+                            window.location.href = 'https://flytoten.flystart.com.br'
+                        } else {
+                            window.location.href = '/newcall?id=' + localStorage.getItem('@FLY:totem_id') + '&reload=1' + '&85236852025=' + libras + '&9585558848554=' + logo_empresa;
+                        }
+                    }
+                },
+            });
+        }, 1500)
+
     </script>
 
     <!-- show this before to join -->
