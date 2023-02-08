@@ -278,29 +278,53 @@
 
             },
         })
-        setInterval(() => {
-            $.ajax({
-                // url: "https://apiflytoten.corpstek.com.br/rooms/created",
-                url: "https://flytoten.flystart.com.br/toten/portugues",
-                method: "POST",
-                data: {
-                    _id_totem: localStorage.getItem("@FLY:totem_id")
-                },
-                success: (resp) => {
-                    resp = JSON.parse(resp);
-                    if (Number(resp) != null) {
-                        window.location.href = '/join/' + resp;
-                    } else {
-                        Swal.fire({
-                            title: 'Aguardando Atendente...',
-                            timer: 2000,
-                            timerProgressBar: true,
-                        })
+        // setInterval(() => {
+        $.ajax({
+            // url: "https://apiflytoten.corpstek.com.br/rooms/created",
+            url: "https://flytoten.flystart.com.br/toten/portugues",
+            method: "POST",
+            data: {
+                _id_totem: localStorage.getItem("@FLY:totem_id")
+            },
+            success: (resp) => {
+                resp = JSON.parse(resp);
+                if (Number(resp) != null) {
+                    window.location.href = '/join/' + resp;
+                } else {
+                    Swal.fire({
+                        title: 'Aguardando Atendente...',
+                        timer: 2000,
+                        timerProgressBar: true,
+                    })
+                }
+            },
+            error: (err) => {
+                let timerInterval
+                Swal.fire({
+                    title: 'Um problema foi encontrado ao realizar a sua chamada',
+                    // html: 'I will close in <b></b> milliseconds.',
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        // const b = Swal.getHtmlContainer().querySelector('b')
+                        // timerInterval = setInterval(() => {
+                        //     // b.textContent = Swal.getTimerLeft()
+                        // }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
                     }
-                },
-                error: (err) => { }
-            })
-        }, 2600);
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        // console.log('I was closed by the timer')
+                        window.location.reload();
+                    }
+                })
+            }
+        })
+        // }, 2600);
     }
 
     function created_call_li(element) {
@@ -325,30 +349,56 @@
 
             },
         })
-        setInterval(() => {
-            $.ajax({
-                // url: "https://apiflytoten.corpstek.com.br/rooms/createdl",
-                url: "https://flytoten.flystart.com.br/toten/libras",
-                method: "POST",
-                data: {
-                    _id_totem: localStorage.getItem("@FLY:totem_id")
-                },
-                success: (resp) => {
-                    resp = JSON.parse(resp);
+        // setInterval(() => {
+        $.ajax({
+            // url: "https://apiflytoten.corpstek.com.br/rooms/createdl",
+            url: "https://flytoten.flystart.com.br/toten/libras",
+            method: "POST",
+            data: {
+                _id_totem: localStorage.getItem("@FLY:totem_id")
+            },
+            success: (resp) => {
+                resp = JSON.parse(resp);
 
-                    if (Number(resp) != null) {
-                        window.location.href = '/join/' + resp;
-                    } else {
-                        Swal.fire({
-                            title: 'Aguardando Atendente...',
-                            timer: 2000,
-                            timerProgressBar: true,
-                        })
-                    }
-                },
-                error: (err) => { }
-            })
-        }, 2600);
+                if (Number(resp) != null) {
+                    window.location.href = '/join/' + resp;
+                } else {
+                    Swal.fire({
+                        title: 'Aguardando Atendente...',
+                        timer: 2000,
+                        timerProgressBar: true,
+                    })
+                }
+            },
+            error: (err) => {
+                error: (err) => {
+                    let timerInterval
+                    Swal.fire({
+                        title: 'Um problema foi encontrado ao realizar a sua chamada',
+                        // html: 'I will close in <b></b> milliseconds.',
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading()
+                            // const b = Swal.getHtmlContainer().querySelector('b')
+                            // timerInterval = setInterval(() => {
+                            //     // b.textContent = Swal.getTimerLeft()
+                            // }, 100)
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                        }
+                    }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            // console.log('I was closed by the timer')
+                            window.location.reload();
+                        }
+                    })
+                }
+            }
+        })
+        // }, 2600);
 
     }
 </script>
