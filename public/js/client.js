@@ -5075,7 +5075,7 @@ function leaveRoom() {
                 let id_sala = url.pathname.split('/')[2];
 
                 $.ajax({
-                    url: `https://flytoten.flystart.com.br/toten/finalizadat?sala` + id_sala,
+                    url: `https://flytoten.flystart.com.br/toten/finalizadat?sala=` + id_sala,
                     method: 'GET',
                     complete: function () {
                         let paramentos = `&85236852025=${libras}&9585558848554=${logo_empresa}&85236852024=${cor}&85236852023=${msg_ajuda}`;
