@@ -5049,6 +5049,8 @@ function leaveRoom() {
     let clerck = localStorage.getItem('@FLY:clerck_id');
     let logo_empresa = localStorage.getItem('@FLY:logo_empresa');
     let libras = localStorage.getItem('@FLY:libras');
+    let cor = localStorage.getItem('@FLY:cor');
+    let msg_ajuda = localStorage.getItem('@FLY:msg_ajuda');
 
     let arr = 'Chamada Finalizada';
     if (totem != null) {
@@ -5076,7 +5078,8 @@ function leaveRoom() {
                     url: `https://flytoten.flystart.com.br/toten/finalizadat?sala` + id_sala,
                     method: 'GET',
                     complete: function () {
-                        window.location.href = '/newcall?id=' + totem + '&85236852025=' + libras + '&9585558848554=' + logo_empresa;
+                        let paramentos = `&85236852025=${libras}&9585558848554=${logo_empresa}&85236852024=${cor}&85236852023=${msg_ajuda}`;
+                        window.location.href = `/newcall?id=${totem}${paramentos}`;
                     },
                 });
             }

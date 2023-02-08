@@ -38,8 +38,13 @@
             let data = url.pathname.split('/')[2];
 
 
+            let totem = localStorage.getItem('@FLY:totem_id');
             let logo_empresa = localStorage.getItem('@FLY:logo_empresa');
             let libras = localStorage.getItem('@FLY:libras');
+            let cor = localStorage.getItem('@FLY:cor');
+            let msg_ajuda = localStorage.getItem('@FLY:msg_ajuda');
+
+            let paramentos = `&85236852025=${libras}&9585558848554=${logo_empresa}&85236852024=${cor}&85236852023=${msg_ajuda}`;
 
             $.ajax({
                 url: "https://flytoten.flystart.com.br/toten/finalizar?sala=" + data,
@@ -55,7 +60,8 @@
                         if (id_totem == undefined || id_totem == null) {
                             window.location.href = 'https://flytoten.flystart.com.br'
                         } else {
-                            window.location.href = '/newcall?id=' + localStorage.getItem('@FLY:totem_id') + '&reload=1' + '&85236852025=' + libras + '&9585558848554=' + logo_empresa;
+                            // window.location.href = '/newcall?id=' + localStorage.getItem('@FLY:totem_id') + '&reload=1' + '&85236852025=' + libras + '&9585558848554=' + logo_empresa;
+                            window.location.href = `/newcall?id=${totem}&reload=1${paramentos}`;
                         }
                     }
                 },

@@ -138,11 +138,13 @@
         width: 100%;
         text-align: center;
         margin-bottom: 35px;
+        object-fit: contain !important;
     }
 
     .img img {
-        width: 120px;
-        height: 32px;
+        /* width: 120px; */
+        /* height: 32px; */
+        width: 100%;
     }
 
     .container-btn {
@@ -164,7 +166,7 @@
 </style>
 
 <body>
-    <div class="content-nts">
+    <div class="content-nts" id="body-pagina">
         <svg class="svg1" width="1926" height="155" viewBox="0 0 1926 155" fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <path d="M1 10.6592C904.889 -14.5786 1046.01 99 1925 99" stroke="white" />
@@ -188,12 +190,12 @@
                             class="fa-solid fa-hands fa-lg" style="margin-right: 15px;"></i> LIBRAS</button>
                 </div>
                 <div style="margin-top: 10vh;" id="ajuda2">
-                    <!-- <h4 style="text-transform: uppercase; text-align: center; font-weight: normal" >Para atendimento presencial, favor dirigir-se ao SAC seguindo pelo corredor ao lado da Claro</h4>             -->
+                    <h4 id="msg_ajuda" style="text-transform: uppercase; text-align: center; font-weight: normal"></h4>
                 </div>
             </div>
         </div>
         <div class="container-btn">
-            <button class="btn-accessibility bluelight-set" id="accessibility"> <i
+            <button class="btn-accessibility orange-set" id="accessibility"> <i
                     class="fa-brands fa-accessible-icon fa-lg"> </i> ACESSIBILIDADE</button>
         </div>
         <svg class="svg2" width="1926" height="155" viewBox="0 0 1926 155" fill="none"
@@ -214,20 +216,25 @@
         document.addEventListener('contextmenu', event => event.preventDefault());
         let url_string = window.location.href;
         let url = new URL(url_string);
-        libras = url.searchParams.get("85236852025" ); //pega o value
-        localStorage.setItem("@FLY:libras",libras)
-        if (libras == 1) {
-            $('#btn_libras').show();
-        }
+        libras = url.searchParams.get("85236852025"); //pega o value
+        localStorage.setItem("@FLY:libras", libras)
+        if (libras == 1) { $('#btn_libras').show(); }
 
         let logo = 0
-        // $('#logo_empresa').hide();
-        logo =  atob(url.searchParams.get("9585558848554")) //pega o value
-        // console.log(logo)
+        logo = atob(url.searchParams.get("9585558848554"))
         localStorage.setItem("@FLY:logo_empresa", url.searchParams.get("9585558848554"))
-        if (logo != 0) {
-            $('#logo_empresa').attr('src', logo)
-        }
+        if (logo != 0) $('#logo_empresa').attr('src', logo)
+
+        let cor = 0;
+        cor = atob(url.searchParams.get("85236852024"));
+        localStorage.setItem("@FLY:cor", url.searchParams.get("85236852024"))
+        if (cor != 0) $('#body-pagina').css('background-color', cor);
+
+        let msg_ajuda = 0;
+        msg_ajuda = atob(url.searchParams.get("85236852023"));
+        localStorage.setItem("@FLY:msg_ajuda", url.searchParams.get("85236852023"))
+        console.log(msg_ajuda)
+        if (msg_ajuda != 0) $('#msg_ajuda').text(msg_ajuda);
 
     })
 </script>
