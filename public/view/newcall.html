@@ -184,7 +184,7 @@
             <div class="content-btns">
                 <h4>SELECIONE A OPÇÃO E VOCÊ SERÁ DIRECIONADO PARA NOSSA EQUIPE DE ATENDIMENTO</h4>
                 <div class="btns " id="btns-port-libra">
-                    <button onclick="created_call(this)" class="btn-portuguese orange-set"><i
+                    <button onclick="created_call(this)" id="idBtnNewCallPortugues" class="btn-portuguese orange-set"><i
                             class="fa-regular fa-message fa-lg"></i> PORTUGUÊS</button>
                     <button id="btn_libras" onclick="created_call_li(this)" class="btn-libra orange-set"> <i
                             class="fa-solid fa-hands fa-lg" style="margin-right: 15px;"></i> LIBRAS</button>
@@ -219,6 +219,11 @@
         libras = url.searchParams.get("85236852025"); //pega o value
         localStorage.setItem("@FLY:libras", libras)
         if (libras == 1) { $('#btn_libras').show(); }
+
+        if (libras == 0) {
+            $('#idBtnNewCallPortugues').html(`<i
+                            class="fa-regular fa-message fa-lg"></i> CHAMADA</button>`)
+        }
 
         let logo = 0
         logo = atob(url.searchParams.get("9585558848554"))
